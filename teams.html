@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>الفرق المشاركة - KING GAMING CHAMPIONS</title>
+  <style>
+    body { font-family: Arial; direction: rtl; background: #000; color: #0f0; padding: 20px; }
+    h1 { text-align: center; color: #fff; }
+    ul { list-style: none; padding: 0; max-width: 500px; margin: auto; }
+    li { padding: 10px; border-bottom: 1px solid #333; }
+    .footer { text-align: center; margin-top: 30px; color: #888; }
+  </style>
+</head>
+<body>
+  <h1>الفرق المشاركة</h1>
+  <ul id="teamList"></ul>
+
+  <script>
+    fetch('teams.json')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('teamList');
+        data.forEach((team, index) => {
+          const li = document.createElement('li');
+          li.textContent = `${index + 1}. ${team}`;
+          list.appendChild(li);
+        });
+      })
+      .catch(error => {
+        document.getElementById('teamList').innerHTML = "<li>⚠️ لم يتم تحميل الفرق</li>";
+        console.error(error);
+      });
+  </script>
+
+  <div class="footer">👑 KING GAMING CHAMPIONS</div>
+</body>
+</html>
